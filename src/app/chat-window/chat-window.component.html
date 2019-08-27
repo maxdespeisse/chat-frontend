@@ -1,8 +1,20 @@
-<div id="messages">
-  <div *ngFor="let message of messages">
-    {{ message }}
+<div class="container">
+  <div id="messages" class="mb-5">
+    <div *ngFor="let message of messages">
+     
+    </div>
+
+    <div *ngFor="let message of messages" class="card text-white bg-primary mb-3">
+      <div class="card-body">
+        <p class="card-text"> {{ message }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="input-group fixed-bottom">
+    <input type="text" class="form-control" [(ngModel)]="newMessage" placeholder="Type message here" (keyup.enter)="send()"/>
+    <div class="input-group-append">
+      <button type="button" (click)="send()" class="btn btn-primary">Send</button>  
+    </div>
   </div>
 </div>
-<p>Test</p>
-<input [(ngModel)]="newMessage" placeholder="Type message here" />
-<button type="button" (click)="send()">Send</button>

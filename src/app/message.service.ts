@@ -33,6 +33,7 @@ export class MessageService {
   }
 
   constructor() {
+    console.log('environment.apiUrl', environment.apiUrl);
     this.socket = io(environment.apiUrl);
   }
 

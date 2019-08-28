@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  apiUrl: 'https://safe-spire-86891.herokuapp.com/',
 };

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import * as io from 'socket.io-client';
+import { MessageService } from '../message.service';
 
 @Component({
   selector: 'app-chat-window',
@@ -10,22 +10,18 @@ export class ChatWindowComponent implements OnInit {
 
   messages = [];
   newMessage: string;
-  socket: SocketIOClient.Socket;
 
-  constructor() { }
+  constructor(private messageService: MessageService) { }
 
   ngOnInit() {
-    this.socket = io('https://safe-spire-86891.herokuapp.com/');
-    this.socket.on('news', ({ messages }) => {
-      this.messages = messages;
-    });
+    this.messageService.getPreviousMessages().subscribe(messages => this.messages = messages);
 
-    this.socket.on('chat message', message => {
+    this.messageService.getNewMessage().subscribe(message => {
       this.messages.push(message);
     });
   }
 
   send() {
-    this.socket.emit('chat message', this.newMessage);
+    this.messageService.send(this.newMessage);
   }
 }

@@ -29,6 +29,7 @@ export class ChatWindowComponent implements OnInit {
 
   send() {
     this.messageService.send(this.newMessage);
+    this.newMessage = '';
   }
 
   ngAfterViewChecked() {
